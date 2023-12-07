@@ -1,0 +1,46 @@
+<script>
+
+var escolha = 1;
+
+while (escolha === 1) {
+    var count = 0;
+    var primeira, segunda;
+
+    while (count === 0) {
+        var nota1 = parseFloat(prompt("nota 1: "));
+
+        if (nota1 >= 0 && nota1 <= 10) {
+            primeira = nota1;
+            count++;
+        } else {
+            console.log("nota invalida");
+        }
+    }
+
+    while (count === 1) {
+        var nota2 = parseFloat(prompt("nota 2: "));
+
+        if (nota2 >= 0 && nota2 <= 10) {
+            segunda = nota2;
+            count++;
+        } else {
+            console.log("nota invalida");
+        }
+    }
+
+    var media = (primeira + segunda) / 2;
+    console.log("media = " + media.toFixed(2));
+
+    var calculo;
+    do {
+        console.log("novo calculo (1-sim 2-nao)")
+        calculo = parseInt(prompt(""));
+    } while (calculo !== 1 && calculo !== 2);
+
+    escolha = calculo;
+}
+
+   
+
+    </script>
+    

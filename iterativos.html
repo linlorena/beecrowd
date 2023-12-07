@@ -1,0 +1,33 @@
+<script>
+
+/* fatorial 
+calculo do fatorial
+
+problema: dado um numero n, calcular o fatorial de n
+
+n! = 1*2*3*...n
+
+aplicações: calculos estatisticos, matematicos e de probabilidade
+
+descrição do algoritmo:
+1 - obter o numero n, n>0
+2 - inicializar o produto com 1 e a contagem de produtos iniciando com 0
+3 - enquanto houve numeros a serem calculados, fazer repetidamente:
+    - incrementar a contagem
+    - calcular o produto atual, multiplicando a variavel de contagem pelo produto mais recente
+4 - exibir o resultado de n!
+
+*/
+
+var n = prompt("digite o numero: ");
+var fator = 1;
+
+for (i=1; i<=n; i++){
+    fator = fator*i
+
+}
+console.log(n + "! = " + fator)
+
+
+
+</script>

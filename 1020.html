@@ -1,0 +1,13 @@
+<script>
+
+const IDADE_DIAS = parseInt(prompt('Digite a idade em dias:'));
+
+const anos = Math.floor(IDADE_DIAS / 365);
+const meses = Math.floor((IDADE_DIAS % 365) / 30);
+const dias = (IDADE_DIAS % 365) % 30;
+
+console.log(`${anos} ano(s)\n${meses} mes(es)\n${dias} dia(s)`);
+
+
+
+</script>

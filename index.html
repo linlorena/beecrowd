@@ -1,0 +1,378 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CRM Básico</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f4f4f4;
+    }
+
+    header {
+      background-color: #333;
+      color: white;
+      padding: 1em;
+      text-align: center;
+    }
+
+    nav {
+      background-color: #eee;
+      padding: 1em;
+    }
+
+    main {
+      padding: 2em;
+    }
+
+    button {
+      margin-bottom: 1em;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin-top: 1em;
+    }
+
+    th, td {
+      border: 1px solid #ddd;
+      padding: 8px;
+      text-align: left;
+    }
+
+    th {
+      background-color: #333;
+      color: white;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>CRM Básico</h1>
+  </header>
+
+  <nav>
+    <button onclick="mostrarContatos()">Contatos</button>
+    <button onclick="mostrarPropostas()">Propostas</button>
+    <button onclick="sairDoPrograma()">Sair</button>
+  </nav>
+
+  <main id="conteudo-principal">
+    <!-- conteúdo principal da página
+    o id permite que o JavaScript e o CSS selecione esse elemento específico
+    para realizar ações ou aplicar estilos específicos a ele-->
+  </main>
+
+  <script>
+    let contatos = []; // array para armazenar informações sobre contatos, como nome, endereço, telefone e e-mail
+    let propostas = []; // array  para armazenar informações sobre propostas, como número da proposta, data de criação, valor e status
+    let contadorProposta = 1; // controla o número das propostas, incrementando conforme novas propostas são criadas e gerando números sequenciais
+
+    function salvarDadosNoLocalStorage() {
+      // armazena os contatos, propostas e o contador de propostas no Armazenamento Local
+      localStorage.setItem("contatos", JSON.stringify(contatos)); 
+      localStorage.setItem("propostas", JSON.stringify(propostas));
+      localStorage.setItem("contadorProposta", contadorProposta);
+      /*JSON.stringify converte o array em uma string JSON, pois o localStorage armazena apenas strings*/
+    }
+
+    function carregarDadosDoLocalStorage() {
+      /*recupera os dados armazenados previamente no Armazenamento Local do navegador e
+       carrega de volta para as variáveis da aplicação*/
+      const contatosArmazenados = JSON.parse(localStorage.getItem("contatos"));
+      const propostasArmazenadas = JSON.parse(localStorage.getItem("propostas"));
+      const contadorArmazenado = localStorage.getItem("contadorProposta"); /*pega o valor do contador de propostas armazenado 
+      no Armazenamento Local e armazena na variável contadorArmazenado*/
+
+      if (contatosArmazenados) {
+        contatos = contatosArmazenados;
+      }
+
+      if (propostasArmazenadas) {
+        propostas = propostasArmazenadas;
+      }
+
+      if (contadorArmazenado) {
+        contadorProposta = parseInt(contadorArmazenado);
+      }
+      /*verifica se as variáveis existem e não são nulos. se existir, atribui os dados recuperados 
+      de volta à outra variável, restaurando o que tinha sido previamente salvos*/
+    }
+
+    function mostrarContatos() {
+      // exibe a lista de contatos na página para o usuário
+      carregarDadosDoLocalStorage();
+      // garante que a lista de contatos seja atualizada com os dados mais recentes
+
+      // ordena ps contatos em ordem alfabética
+      contatos.sort((a, b) => a.nome.localeCompare(b.nome));
+
+      // Construir lista de contatos
+      let listaContatosHTML = "<h2>Lista de Contatos</h2>";
+      listaContatosHTML += "<ul>";
+
+      for (let i = 0; i < contatos.length; i++) {
+        listaContatosHTML += `<li>${contatos[i].nome} `;
+        listaContatosHTML += `<button onclick="verContato(${i})">Visualizar</button>`;
+        listaContatosHTML += `<button onclick="editarContato(${i})">Editar</button>`;
+        listaContatosHTML += `<button onclick="excluirContato(${i})">Excluir</button>`;
+        listaContatosHTML += `<button onclick="criarProposta(${i})">Nova Proposta</button></li>`;
+      }
+
+      listaContatosHTML += "</ul>";
+      listaContatosHTML += "<button onclick='criarContato()'>Criar Contato</button>";
+      listaContatosHTML += "<button onclick='voltarParaMenu()'>Voltar</button>";
+      /*loop para exibir a lista de contatos e criar a funcionalidade de interação 
+      com cada contato criado permitindo visualização, edição, exclusão e criação de novas propostas*/
+
+      // exibe a lista de contatos
+      document.getElementById("conteudo-principal").innerHTML = listaContatosHTML;
+    }
+
+    function criarContato() {
+      // criação de um novo contato
+      let nome = prompt("Digite o nome do contato:");
+
+      if (nome !== null) {
+      //verifica se o usuário digitou um nome para seguir com os prompts
+        let endereco = prompt("Digite o endereço do contato:");
+        let telefone = prompt("Digite o telefone do contato:");
+        let email = prompt("Digite o e-mail do contato:");
+
+        // cria objeto de contato e adiciona ao array
+        let novoContato = { nome, endereco, telefone, email };
+        contatos.push(novoContato);
+        //adiciona o novo contato criado ao final do array de contatos 
+
+        // salvar no Armazenamento Local
+        salvarDadosNoLocalStorage();
+
+        // voltar para a lista de contatos
+        mostrarContatos();
+      }
+    }
+
+    function verContato(indice) {
+      // visualizar detalhes de um contato específico
+      let detalhesContatoHTML = `<h2>${contatos[indice].nome}</h2>`;
+      detalhesContatoHTML += `<p>Endereço: ${contatos[indice].endereco}</p>`;
+      detalhesContatoHTML += `<p>Telefone: ${contatos[indice].telefone}</p>`;
+      detalhesContatoHTML += `<p>E-mail: ${contatos[indice].email}</p>`;
+      detalhesContatoHTML += "<button onclick='voltarParaContatos()'>Voltar para Contatos</button>";
+
+      // Exibir detalhes do contato
+      document.getElementById("conteudo-principal").innerHTML = detalhesContatoHTML;
+      /*atualiza o conteúdo do elemento HTML, exibindo os detalhes do contato na página.*/
+    }
+
+    function editarContato(indice) {
+      // editar um contato existente
+      let novoNome = prompt("Digite o novo nome do contato:", contatos[indice].nome);
+      let novoEndereco = prompt("Digite o novo endereço do contato:", contatos[indice].endereco);
+      let novoTelefone = prompt("Digite o novo telefone do contato:", contatos[indice].telefone);
+      let novoEmail = prompt("Digite o novo e-mail do contato:", contatos[indice].email);
+
+      // atualizar informações do contato com as novas informações inseridas no prompt
+      contatos[indice].nome = novoNome;
+      contatos[indice].endereco = novoEndereco;
+      contatos[indice].telefone = novoTelefone;
+      contatos[indice].email = novoEmail;
+
+      // salvar no Armazenamento Local
+      salvarDadosNoLocalStorage();
+
+      // voltar para a lista de contatos
+      mostrarContatos();
+    }
+
+    function excluirContato(indice) {
+      // excluir um contato
+      if (confirm("Tem certeza de que deseja excluir este contato?")) {
+        contatos.splice(indice, 1);
+        /*remove um elemento do array contatos no índice fornecido (indice). 
+        o segundo argumento 1 indica que apenas um elemento será removido a partir do índice especificado*/
+
+        // salvar no Armazenamento Local
+        salvarDadosNoLocalStorage();
+
+        // voltar para a lista de contatos
+        mostrarContatos();
+      }
+    }
+
+    function voltarParaContatos() {
+      // voltar para a lista de contatos
+      mostrarContatos();
+    }
+
+    function voltarParaMenu() {
+      // voltar para o menu principal
+      document.getElementById("conteudo-principal").innerHTML = "";
+    }
+
+    function criarProposta(indiceContato) {
+      // criar uma nova proposta e armazenar nas devidas variáveis
+      let dataCriacao = prompt("Data de criação da proposta (DD/MM/AAAA):");
+      let valor = prompt("Valor da proposta (em R$):");
+      let status = prompt("Status da proposta (ATIVA, EXPIRADA ou FECHADA):");
+
+      let novaProposta = {
+        /*novo objeto que contém as informações da proposta, incluindo número (obtido do contadorProposta),
+      índice do contato relacionado, data de criação, valor e status*/
+        numero: contadorProposta,
+        indiceContato,
+        dataCriacao,
+        valor,
+        status
+      };
+
+      propostas.push(novaProposta);
+      contadorProposta++; /*incrementa o contador de propostas para garantir que o número da próxima proposta seja único*/
+
+      // salvar no Armazenamento Local
+      salvarDadosNoLocalStorage();
+
+      // voltar para a lista de contatos
+      mostrarContatos();
+    }
+
+    function mostrarPropostas() {
+
+  carregarDadosDoLocalStorage();
+  // carrega dados do Armazenamento Local antes de exibir a lista
+
+  // construção da lista de propostas
+  let listaPropostasHTML = "<h2>Lista de Propostas</h2>";
+  listaPropostasHTML += "<table>";
+  listaPropostasHTML += "<tr>";
+  listaPropostasHTML += "<th>Nº Proposta</th>";
+  listaPropostasHTML += "<th>Cliente</th>";
+  listaPropostasHTML += "<th>Data de Criação</th>";
+  listaPropostasHTML += "<th>Valor (R$)</th>";
+  listaPropostasHTML += "<th>Status</th>";
+  listaPropostasHTML += "</tr>";
+
+  for (let i = 0; i < propostas.length; i++) {
+  //loop para percorrer todas as propostas existentes e criar as linhas da tabela com os detalhes de cada proposta
+    let statusProposta = propostas[i].status; //define a variável statusProposta como o status atual da proposta
+    if (propostaExpirada(propostas[i])) {
+      statusProposta = "Expirada";
+      propostas[i].status = "Expirada"; //verifica se a proposta está expirada e, caso estiver, atualiza seu status para "EXPIRADA"
+    }
+
+    const nomeCliente = contatos[propostas[i].indiceContato].nome;
+    //pega o nome do cliente relacionado a essa proposta usando o índice do contato
+
+    listaPropostasHTML += "<tr>";
+    listaPropostasHTML += `<td>${propostas[i].numero}</td>`;
+    listaPropostasHTML += `<td>${nomeCliente}</td>`;
+    listaPropostasHTML += `<td>${propostas[i].dataCriacao}</td>`;
+    listaPropostasHTML += `<td>${propostas[i].valor}</td>`;
+    listaPropostasHTML += `<td>${statusProposta}</td>`;
+    listaPropostasHTML += "</tr>";
+  }
+
+  listaPropostasHTML += "</table>";
+  listaPropostasHTML += "<button onclick='voltarParaMenu()'>Voltar</button>";
+
+  // exibe a lista de propostas na tela
+  document.getElementById("conteudo-principal").innerHTML = listaPropostasHTML;
+}
+
+function propostaExpirada(proposta) {
+//determina se uma proposta está expirada com base na data de criação da proposta em relação à data atual
+  const dataCriacao = new Date(proposta.dataCriacao); //cria um objeto Date a partir da propriedade dataCriacao, que deve ser uma data válida
+  const dataAtual = new Date(); //objeto para representar a data e hora atuais
+  const diferencaTempo = Math.abs(dataAtual - dataCriacao); // faz a diferença de tempo em milissegundos entre a data atual e a data de criação da proposta
+  //Math.abs() retorna o valor absoluto para garantir que a diferença seja positiva
+  const diferencaDias = Math.ceil(diferencaTempo / (1000 * 60 * 60 * 24)); //diferença de tempo em dias
+  //divide a diferença de tempo em milissegundos por ms/s, s/min, min/hr, hr/dia) e arredonda para cima
+  //fornece o número de dias entre a data de criação e a data atual
+
+  return diferencaDias > 7;
+} //verifica se a diferença em dias entre a data de criação e a data atual for maior que 7 dias, indicando que a proposta está expirada
+
+
+function propostaExpirada(proposta) {
+  const dataCriacaoParts = proposta.dataCriacao.split("/"); // data precisa estar no formato "DD/MM/AAAA"
+  const dataCriacaoFormatoCorreto = `${dataCriacaoParts[2]}-${dataCriacaoParts[1]}-${dataCriacaoParts[0]}`;
+  //contém três elementos correspondentes a dia, mês e ano
+  const dataCriacao = new Date(dataCriacaoFormatoCorreto); //representação válida da data de criação da proposta
+  const dataAtual = new Date(); //data e a hora atuais
+  const prazoExpiracao = new Date(dataCriacao); //baseada na data de criação da proposta
+  prazoExpiracao.setDate(prazoExpiracao.getDate() + 7); //  define o prazo de expiração da proposta como 7 dias após a data de criação
+
+  // verificação no console para depurar as datas
+  console.log("Data Atual:", dataAtual);
+  console.log("Data de Criação da Proposta:", dataCriacao);
+  console.log("Prazo de Expiração:", prazoExpiracao);
+
+  return dataAtual > prazoExpiracao; // verifica se a data atual é maior que o prazo de expiração, indicando que a proposta já passou do prazo
+}
+
+salvarDadosNoLocalStorage()
+
+    function sairDoPrograma() {
+      // função para sair do programa
+      document.getElementById("conteudo-principal").innerHTML = "<h2>Programa encerrado</h2><p>O programa foi encerrado. Até logo!</p>";
+    }
+
+    function salvarDadosNoLocalStorage() {
+      // salvamento de dados no Armazenamento Local
+      localStorage.setItem("contatos", JSON.stringify(contatos));
+      localStorage.setItem("propostas", JSON.stringify(propostas));
+      localStorage.setItem("contadorProposta", contadorProposta);
+    }
+
+    function carregarDadosDoLocalStorage() {
+
+  const contatosArmazenados = JSON.parse(localStorage.getItem("contatos"));
+  const propostasArmazenadas = JSON.parse(localStorage.getItem("propostas"));
+  const contadorArmazenado = localStorage.getItem("contadorProposta");
+//busca e converte os dados das propostas que estão armazenados no Armazenamento Local e os atribui às variáveis
+  
+if (contatosArmazenados) {
+    contatos = contatosArmazenados;
+  }
+//verifica se existem dados de contatos armazenados. se houver, atribui esses dados recuperados à variável contatos
+
+  if (propostasArmazenadas) {
+    // atualizar status das propostas expiradas antes de carregar
+    propostas = propostasArmazenadas;
+    for (let i = 0; i < propostas.length; i++) {
+      if (propostaExpirada(propostas[i])) {
+        propostas[i].status = "Expirada";
+    //percorre todas as propostas verificando se alguma está expirada e verificando os dados de proposta armazenados
+      }
+    }
+  }
+
+  if (contadorArmazenado) {
+    contadorProposta = parseInt(contadorArmazenado);
+  }
+//garante que o estado anterior da aba seja restaurado quando o usuário acessar a página novamente
+}
+
+
+    function atualizarStatusPropostasExpiradas() {
+//verifica se alguma proposta está expirada no momento em que a página é carregada 
+  for (let i = 0; i < propostas.length; i++) {
+    if (propostaExpirada(propostas[i])) {
+      propostas[i].status = "Expirada";
+    }
+  }
+
+  salvarDadosNoLocalStorage();
+}
+
+// chamada para atualizar o status das propostas expiradas ao carregar a página
+atualizarStatusPropostasExpiradas();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,21 @@
+<script>
+
+// jogo da adivinhacao 
+
+var numero = Math.round(Math.random()*10) // numero entre 0 e 10
+var tentativas = 3;
+
+for (var x = 1; x<=3; x++){
+    var chute = parseInt(prompt("digite sua " + x + "a tentativa: "))
+    if (chute == numero){
+        alert("parabens vc acertou")
+        break;
+       // x = 4;
+    }
+    else{
+        alert("vc errou")
+    }
+}
+document.write("o numero que eu pensei foi " + numero)
+
+</script>

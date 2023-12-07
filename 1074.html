@@ -1,0 +1,19 @@
+<script>
+
+
+var N = parseInt(prompt("quantidade de valores a serem lidos: "));
+
+for (i = 0; i < N; i++) {
+  var valor = parseInt(prompt("digite um valor: "));
+  
+  if (valor === 0) {
+    console.log("NULL");
+  } else if (valor % 2 === 0) {
+    console.log("EVEN", valor > 0 ? "POSITIVE" : "NEGATIVE");
+  } else {
+    console.log("ODD", valor > 0 ? "POSITIVE" : "NEGATIVE");
+  }
+}
+
+
+</script>

@@ -1,0 +1,12 @@
+<script>
+
+const DURACAO = parseInt(prompt("tempo em segundos:"));
+
+const HORAS = Math.floor(DURACAO / 3600);
+const MINUTOS = Math.floor((DURACAO % 3600) / 60);
+const SEGUNDOS = DURACAO % 60;
+
+console.log(`${HORAS}:${MINUTOS}:${SEGUNDOS}`);
+
+
+</script>

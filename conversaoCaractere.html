@@ -1,0 +1,36 @@
+<script>
+
+/*Problema
+Dada a representação em caracteres de um número
+inteiro, convertê-la para o seu formato decimal
+convencional.
+Aplicações
+Aplicativos de negócios, processamento de dados.
+Descrição do Algoritmo
+1. Obter a cadeia de caracteres a ser convertida para
+decimal, e determinar o seu comprimento n.
+2. Inicializar o valor decimal com zero.
+3. Definir como base o valor ordinal do caractere "0"
+na tabela ASCII.
+4. Enquanto menos do que n caracteres tiverem sido
+examinados, faça:
+        ◇ converter o próximo caractere para o dígito
+decimal correspondente;
+        ◇ deslocar o valor decimal atual para a esquerda
+e adicionar o dígito do caractere atual.
+4. Exibir o número inteiro decimal correspondente.*/
+
+var numero = prompt("numero inteiro:");
+var n = numero.length;
+var decimal = 0;
+var base = 48;
+var digito;
+for (var i = 0; i < n; i++) {
+digito = numero.charCodeAt(i) -
+base;
+decimal = decimal * 10 + digito;
+}
+document.write("formato decimal: " +
+decimal);
+
+</script>

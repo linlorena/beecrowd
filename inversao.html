@@ -1,0 +1,18 @@
+<script>
+
+/*inversão dos digitos de um numero inteiro*/ 
+
+var n = prompt("numero inteiro positivo:");
+var invertido = 0;
+var d;
+
+while (n > 0) {
+d = n % 10;
+invertido = invertido * 10 + d;
+n = Math.trunc(n / 10);
+}
+
+console.log("numero invertido: " +
+invertido);
+
+</script>

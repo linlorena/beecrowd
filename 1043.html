@@ -1,0 +1,16 @@
+<script>
+
+const entrada = prompt('digite tres valores reais separados por espaço: ');
+const valores = entrada.split(' ').map(Number);
+
+const [A, B, C] = valores;
+
+if (A + B > C && A + C > B && B + C > A) {
+    const perimetro = (A + B + C).toFixed(1);
+    console.log(`Perimetro = ` + perimetro);
+} else {
+    const area = (((A + B) * C) / 2).toFixed(1);
+    console.log(`Area = ` + area);
+}
+
+</script>

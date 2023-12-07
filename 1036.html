@@ -1,0 +1,28 @@
+<script>
+
+const [A, B, C] = prompt('Digite as entradas separadas por espaco').split(' ');
+
+if (!isNaN(A) && !isNaN(B) && !isNaN(C)) {
+  if (A != 0) {
+    const delta = B * B - 4 * A * C;
+
+    if (delta < 0) {
+      console.log('Impossivel calcular');
+    } else {
+      const x1 = (-B + Math.sqrt(delta)) / (2 * A);
+      const x2 = (-B - Math.sqrt(delta)) / (2 * A);
+
+      console.log(`R1 = ${x1.toFixed(5)}`);
+      console.log(`R2 = ${x2.toFixed(5)}`);
+    }
+  } else {
+    console.log('Impossivel calcular');
+  }
+}
+
+
+
+
+
+    
+</script>

@@ -1,0 +1,36 @@
+<script>
+
+/*algoritmo fundamental
+soma de um conjunto de números
+
+problema: dado um conjunto de n notas de alunos em um exame, fazer a contagem do número de alunos que foram aprovados. 
+será considerado aprovado o aluno que tirar nota <= 50.
+
+aplicações: formas de contagem
+
+descrição do algoritmo:
+1. obter o número de notas a serem processadas
+2. inicializar a contagem com zero
+3. enquanto houver notas a serem processadas, fazer repetidamente:
+    -obter a próxima nota
+    -testar se a nota é >=50, caso sim, adicionar 1 na variável de contagem
+4. mostrar a contagem (número de aprovações)
+*/
+
+var n = parseInt(prompt("digite a quantidade de alunos: "));
+var nota;
+var contagem = 0;
+var i = 0;
+
+while(i<n){
+    nota = prompt("digite a nota do aluno: ");
+
+    if(nota >= 50){
+        contagem++;
+    }
+    i++
+}
+
+console.log("numero de alunos aprovados: " + contagem)
+
+</script>

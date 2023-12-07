@@ -1,0 +1,37 @@
+<script>
+
+var count = 0;
+
+while (count === 0) {
+    
+    var n = parseFloat(prompt("nota 1: "));
+
+    if (n >= 0 && n <= 10) {
+        var a = n;
+        count++;
+    }
+
+    else {
+        console.log("nota invalida");
+    }
+}
+
+while (count === 1) {
+    
+    var m = parseFloat(prompt("nota 2: "));
+
+    if (m >= 0 && m <= 10) {
+        var b = m;
+        count++;
+    }
+
+    else {
+        console.log("nota invalida");
+    }
+}
+
+var media = (a + b) / 2;
+console.log("media = " + media.toFixed(2));
+
+
+</script>

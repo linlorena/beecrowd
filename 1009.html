@@ -1,0 +1,12 @@
+<script>
+
+var NOME = prompt("nome: ");
+var SALARIO = parseFloat(prompt("salario: "));
+var VENDAS = parseFloat(prompt("vendas: "));
+
+var COMISSAO = 0.15*VENDAS; 
+var TOTAL = (SALARIO+COMISSAO).toFixed(2)
+
+console.log("TOTAL = R$ " + TOTAL)
+
+</script>

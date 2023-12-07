@@ -1,0 +1,20 @@
+<script>
+
+var PESO = parseFloat(prompt("digite o peso: "));
+var ALTURA = parseFloat(prompt("digite a altura: "));
+
+var IMC = PESO/(ALTURA*ALTURA)
+
+if (IMC < 18.5){
+    document.write("abaixo do peso normal");
+}
+
+    else if (IMC >= 18.5 && IMC <= 25){
+     document.write("peso normal");
+}
+
+    else if (IMC > 25){
+    document.write("excesso de peso");
+}
+
+</script>

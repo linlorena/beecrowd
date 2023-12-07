@@ -1,0 +1,37 @@
+<script>
+
+var teste = parseInt(prompt("digite o numero de casos de teste"));
+var i = 0;
+
+while (i<teste){
+    var num = parseInt(prompt("digite um numero: "));
+    var primo = true;
+    var j = 1
+
+    if (num <= 1){
+        primo = false;
+    }
+    else if (num <= 3){
+        primo = true;
+    }
+    else if (num%2 == 0 || num%3 == 0){
+        primo = false;
+    }
+    else {
+        for (var j = 5; j*j <= num; j += 6){
+            if (num%j == 0 || num % (j+2) == 0){
+                primo = false;
+                break
+            }
+        }
+}
+if (primo) {
+    console.log(num + " eh primo");
+} else {
+    console.log(num + " nao eh primo");
+}
+i++;
+}
+
+
+</script>

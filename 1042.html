@@ -1,0 +1,22 @@
+<script>
+
+const entrada = prompt('Digite 3 valores inteiros: ');
+const valores = entrada.split(' ').map(Number);
+const valoresOrdenados = valores.slice().sort((a, b) => a - b);
+
+for (const valor of valoresOrdenados) {
+  console.log(valor);
+}
+
+console.log("");
+
+for (const valor of valores) {
+  console.log(valor);
+}
+
+
+
+
+
+
+</script>

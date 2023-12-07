@@ -1,0 +1,23 @@
+<script>
+
+var X = parseInt(prompt("Digite o primeiro valor: "));
+var Y = parseInt(prompt("Digite o segundo valor: "));
+var somaImpares = 0;
+
+// Garante que X é o menor valor e Y é o maior valor
+if (X > Y) {
+    var temp = X;
+    X = Y;
+    Y = temp;
+}
+
+for (var i = X + 1; i < Y; i++) {
+    if (i % 2 !== 0) {
+        somaImpares += i;
+    }
+}
+
+console.log(somaImpares);
+
+
+</script>

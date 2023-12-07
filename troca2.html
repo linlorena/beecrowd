@@ -1,0 +1,30 @@
+<script>
+
+var a = parseInt(prompt(""))
+var b = parseInt(prompt(""))
+var c = parseInt(prompt(""))
+
+console.log("ANTES")
+console.log("a = " + a)
+console.log("b = " + b)
+console.log("c = " + c)
+
+if (a>b){
+    var aux = a
+    a = b
+    b = aux
+}
+if (a>c){
+    var aux = a
+    a = c
+    c = aux 
+}
+if (b>c){
+    var aux = b
+    b = c
+    c = aux 
+}
+console.log("DEPOIS")
+console.log(a + ", " + b + ", " + c)
+
+</script>

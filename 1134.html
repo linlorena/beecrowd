@@ -1,0 +1,29 @@
+<script>
+
+var alcool = 0;
+var gasolina = 0;
+var diesel = 0;
+
+while (true) {
+    var codigo = parseInt(prompt("código do combustível (1: Álcool, 2: Gasolina, 3: Diesel, 4: Fim):"));
+    
+    if (codigo === 4) {
+        break;
+    } else if (codigo >= 1 && codigo <= 3) {
+        if (codigo === 1) {
+            alcool++;
+        } else if (codigo === 2) {
+            gasolina++;
+        } else if (codigo === 3) {
+            diesel++;
+        }
+    }
+}
+
+console.log("MUITO OBRIGADO");
+console.log("Alcool: " + alcool);
+console.log("Gasolina: " + gasolina);
+console.log("Diesel: " + diesel);
+
+
+</script>

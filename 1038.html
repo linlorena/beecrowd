@@ -1,0 +1,14 @@
+<script>
+
+const entrada = prompt('digite o codigo e a quantidade: ');
+const [codigo, quantidade] = entrada.split(' ').map(Number);
+
+const precos = [0, 4.0, 4.5, 5.0, 2.0, 1.5];
+
+if (codigo >= 1 && codigo <= 5) {
+    const total = precos[codigo] * quantidade;
+    console.log(`Total: R$ ${total.toFixed(2)}`);
+} else {
+}
+
+</script>

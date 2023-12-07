@@ -1,0 +1,14 @@
+<script>
+
+const entrada = prompt('Digite dois valores inteiros separados por espaço: ');
+const valores = entrada.split(' ').map(Number);
+
+const [A, B] = valores;
+
+if (A % B === 0 || B % A === 0) {
+    console.log('Sao Multiplos');
+} else {
+    console.log('Nao sao Multiplos');
+}
+
+</script>

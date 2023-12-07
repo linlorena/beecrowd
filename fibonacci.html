@@ -1,0 +1,54 @@
+<script>
+
+/* sequencia de fibonacci
+
+problema: dado um numero n, gerar e imprimir os n primeiros termos da sequencia de fibonacci, n>=1
+               0,1,1,2,3,5,8,13,21,34...
+
+aplicações: botanica, teoria das redes eletricas, ordenacao e pesquisa
+
+descrição do algoritmo
+1 - obter o numero n de termos a serem gerados
+2 - atribuir valores aos 2 primeiros termos "a" e "b"
+3 - inicializar a contagem dos numeros gerados
+4 - se n for igual a 1, entao somente exibir "a", caso contrario, exibir os 2 primeiros termos
+5 - enquanto houver termos a serem gerados, fazer repetidamente:
+       - atualizar a contagem de numeros gerados
+       - gerar o proximo numero "c"
+       - escrever o proximo numero
+       - atribuir ao primeiro numero o valor do segundo numero
+       - atribuir o segundo numero o valor do proximo numero gerado
+*/ 
+ 
+
+var n = parseInt(prompt("Digite a quantidade de termos: "));
+
+var a = 0;
+var b = 1;
+var c;
+
+var output = "";
+
+if (n === 1) {
+    output += a;
+} else {
+    output += a + " " + b;
+}
+
+for (var i = 2; i < n; i++) {
+    c = a + b;
+    if (i < n - 1) {
+        output += " " + c;
+    } else {
+        output += " " + c;
+    }
+    a = b;
+    b = c;
+}
+
+console.log(output); 
+
+
+
+
+</script>

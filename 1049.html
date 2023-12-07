@@ -1,0 +1,43 @@
+<script>
+
+const x = prompt("Digite a primeira palavra:").toLowerCase();
+const y = prompt("Digite a segunda palavra:").toLowerCase();
+const z = prompt("Digite a terceira palavra:").toLowerCase();
+
+let resultado = "";
+
+if (x === 'vertebrado') {
+    if (y === 'ave') {
+        if (z === 'carnivoro') {
+            resultado = 'aguia';
+        } else {
+            resultado = 'pomba';
+        }
+    } else if (y === 'mamifero') {
+        if (z === 'onivoro') {
+            resultado = 'homem';
+        } else {
+            resultado = 'vaca';
+        }
+    }
+} else if (x === 'invertebrado') {
+    if (y === 'inseto') {
+        if (z === 'hematofago') {
+            resultado = 'pulga';
+        } else {
+            resultado = 'lagarta';
+        }
+    } else if (y === 'anelideo') {
+        if (z === 'hematofago') {
+            resultado = 'sanguessuga';
+        } else {
+            resultado = 'minhoca';
+        }
+    }
+}
+
+console.log("Animal Identificado:", resultado);
+
+
+
+</script>

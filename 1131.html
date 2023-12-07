@@ -1,0 +1,46 @@
+<script>
+
+var grenais = 0;
+var vitoriasInter = 0;
+var vitoriasGremio = 0;
+var empates = 0;
+
+while (true) {
+    var entrada = prompt("Digite os gols marcados pelo Inter e pelo Grêmio:");
+    var gols = entrada.split(" ");
+    var golsInter = parseInt(gols[0]);
+    var golsGremio = parseInt(gols[1]);
+
+    grenais++;
+
+    if (golsInter > golsGremio) {
+        vitoriasInter++;
+    } else if (golsGremio > golsInter) {
+        vitoriasGremio++;
+    } else {
+        empates++;
+    }
+
+    var resposta = parseInt(prompt("Novo grenal (1-sim 2-nao)"));
+    if (resposta === 2) {
+        break;
+    }
+}
+
+console.log(grenais + " grenais");
+console.log("Inter:" + vitoriasInter);
+console.log("Gremio:" + vitoriasGremio);
+console.log("Empates:" + empates);
+
+if (vitoriasInter > vitoriasGremio) {
+    console.log("Inter venceu mais");
+} else if (vitoriasGremio > vitoriasInter) {
+    console.log("Gremio venceu mais");
+} else {
+    console.log("Nao houve vencedor");
+}
+
+
+
+
+</script>

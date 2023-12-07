@@ -1,0 +1,24 @@
+<script>
+
+var N = parseInt(prompt("quantidade de pares de valores:"));
+
+for (var i = 0; i < N; i++) {
+    var [x, y] = prompt('entradas separadas por espaco:').split(' ');
+    x = parseFloat(x);
+    y = parseFloat(y);
+
+    if (y !== 0) {
+        console.log((x / y).toFixed(1));
+    } else {
+        console.log("divisao impossivel");
+    }
+}
+
+
+
+
+
+
+
+
+</script>

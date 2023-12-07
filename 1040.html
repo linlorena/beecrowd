@@ -1,0 +1,34 @@
+<script>
+
+const notas = prompt('Digite as quatro notas separadas por espaco: ');
+
+const [N1, N2, N3, N4] = notas.split(' ').map(Number);
+
+const MEDIA = ((N1 * 2 + N2 * 3 + N3 * 4 + N4) / 10).toFixed(1);
+
+console.log("Media: " + MEDIA);
+
+if (MEDIA >= 7.0) {
+    console.log('Aluno aprovado.');
+} else if (MEDIA < 5.0) {
+    console.log('Aluno reprovado.');
+} else {
+    console.log('Aluno em exame.');
+
+    const EXAME = parseFloat(prompt('Nota do exame: ')).toFixed(1);
+    console.log(`Nota do exame: ` + EXAME);
+
+    const MEDIAFINAL = (((EXAME * 1) + (MEDIA * 1)) / 2).toFixed(1);
+
+    if (MEDIAFINAL >= 5.0) {
+        console.log('Aluno aprovado.');
+    } else {
+        console.log('Aluno reprovado.');
+    }
+    console.log(`Media final: ` + MEDIAFINAL);
+}
+
+
+
+
+</script>

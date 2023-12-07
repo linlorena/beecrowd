@@ -1,0 +1,46 @@
+<script>
+/*Converter um número inteiro decimal para a sua
+representação binária correspondente.
+Descrição do Algoritmo
+1. Obter o número decimal a ser convertido e
+inicializar o quociente com este número.
+2. Inicializar a contagem de novos dígitos com zero.
+3. Fazer repetidamente até que o quociente seja
+zero:
+◇ calcular o próximo dígito mais significativo,
+usando o resto da divisão do quociente atual
+pela nova base (2);
+◇ armazenar esse dígito no array de saída;
+◇ incrementar a contagem de novos dígitos;
+◇ calcular o próximo quociente a partir do seu
+antecessor, usando a divisão inteira pela nova
+base (2).
+4. Exibir a representação binária do número a partir
+do array de saída, usando a ordem inversa dos
+elementos.*/
+
+var n = prompt("numero inteiro decimal:");
+var q = parseInt(n); // Certifique-se de converter a entrada para um número inteiro
+var ndigit = 0;
+var r;
+var binario = [];
+
+do {
+  r = q % 2;
+  binario[ndigit] = r;
+  ndigit = ndigit + 1;
+  q = Math.trunc(q / 2);
+} while (q != 0);
+
+console.log("numero binário: ");
+var binaryString = ""; // Inicializa uma string vazia para armazenar a representação binária
+
+for (var i = ndigit - 1; i >= 0; i--) {
+  binaryString += binario[i]; // Adicione cada dígito binário à string
+}
+
+console.log(binaryString); // Imprime a representação binária completa
+
+
+
+</script>

@@ -1,0 +1,35 @@
+<script>
+
+var soma = 0;
+var contagemPar = 0;
+var contagemImpar = 0;
+var contagemNeg = 0;
+var contagemPosit = 0;
+var i = 0;
+
+while(i<5){
+    var num = parseInt(prompt("valor: "))
+    if (num%2 === 0){
+        contagemPar++
+        soma = soma + num 
+    }
+    if (num%2 !== 0){
+        contagemImpar++
+        soma = soma + num 
+    }
+    if (num > 0){
+        contagemPosit++
+        soma = soma + num
+    }
+    if (num < 0){
+        contagemNeg++
+        soma = soma + num 
+    }
+    i++
+}
+
+console.log(contagemPar + " valor(es) par(es)")
+console.log(contagemImpar + " valor(es) impar(es)")
+console.log(contagemPosit + " valor(es) positivo(s)")
+console.log(contagemNeg + " valor(es) negativo(s)")
+</script>

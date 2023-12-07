@@ -1,0 +1,25 @@
+<script>
+
+var somaIdades = 0;
+var quantidadeIndividuos = 0;
+
+while (true) {
+    var idade = parseInt(prompt("digite a idade (ou valor negativo para encerrar):"));
+
+    if (idade < 0) {
+        break;
+    }
+
+    somaIdades += idade;
+    quantidadeIndividuos++;
+}
+
+if (quantidadeIndividuos > 0) {
+    var mediaIdade = somaIdades / quantidadeIndividuos;
+    console.log(mediaIdade.toFixed(2));
+} else {
+    console.log("Nenhum dado foi inserido.");
+}
+
+
+</script>
